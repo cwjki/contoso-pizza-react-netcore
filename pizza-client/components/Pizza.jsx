@@ -9,8 +9,8 @@ const Pizza = () => {
   const [maxId, setMaxId] = useState(0);
 
   useEffect(() => {
-    // Simulate fetching data from API
     const fetchPizzaData = () => {
+      // Simulate fetching data from API
       const pizzaData = [
         {
           id: 1,
@@ -35,9 +35,26 @@ const Pizza = () => {
     fetchPizzaData();
   }, []);
 
-  const handleCreate = (item) => {};
-  const handleUpdate = (item) => {};
-  const handleDelete = (id) => {};
+  const handleCreate = (item) => {
+    // Simulate creating item on API
+    const newItem = { ...item, id: data.length + 1 };
+    setData([...data, newItem]);
+    setMaxId(maxId + 1);
+  };
+
+  const handleUpdate = (item) => {
+    // Simulate updating item on API
+    const updatedData = data.map((pizza) =>
+      pizza.id === item.id ? item : pizza
+    );
+    setData(updatedData);
+  };
+
+  const handleDelete = (id) => {
+    // Simulate deleting item on API
+    const updatedData = data.filter((pizza) => pizza.id !== id);
+    setData(updatedData);
+  };
 
   return (
     <>
