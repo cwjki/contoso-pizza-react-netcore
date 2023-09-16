@@ -2,16 +2,58 @@
 import { useState } from "react";
 
 const PizzaList = ({ name, data, onCreate, onUpdate, onDelete, error }) => {
+  const [editingId, setEditingId] = useState(null);
   const [formData, setFormData] = useState({
     id: "",
     name: "",
     description: "",
   });
 
+  const handleFormChange = () => {};
+  const handleSubmit = () => {};
+  const handleEdit = () => {};
+  const handleCancelEdit = () => {};
+
   return (
     <div>
-      PizzaList
-      <h2></h2>
+      <h2>New {name}</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          value={formData.name}
+          onChange={handleFormChange}
+        />
+        <input
+          type="text"
+          name="description"
+          placeholder="Description"
+          value={formData.description}
+          onChange={handleFormChange}
+        />
+        <button type="submit">{editingId ? "Update" : "Create"}</button>
+        {editingId && (
+          <button type="button" onClick={handleCancelEdit}>
+            Cancel
+          </button>
+        )}
+      </form>
+      {error && <div>{error.message}</div>}
+      <h2>{name}s</h2>
+      {/* <ul>
+        {data.map((item) => (
+          <li key={item.id}>
+            <div>
+              {item.name} - {item.description}
+            </div>
+            <div>
+              <button onClick={() => handleEdit(item)}>Edit</button>
+              <button onClick={() => onDelete(item.id)}>Delete</button>
+            </div>
+          </li>
+        ))}
+      </ul> */}
     </div>
   );
 };
