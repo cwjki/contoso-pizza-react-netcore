@@ -24,10 +24,16 @@ const Pizza = () => {
   }, []);
 
   const handleCreate = (item) => {
-    // Simulate creating item on API
-    const newItem = { ...item, id: data.length + 1 };
-    setData([...data, newItem]);
-    setMaxId(maxId + 1);
+    console.log(`add item: ${JSON.stringify(item)}`);
+
+    fetch(API_URL, {
+      method: "POST",
+      headers,
+      body: JSON.stringify({ name: item.name, description: item.description }),
+    })
+      .then((response) => response.json())
+      .then((returnedItem) => setData(...data, returnedItem))
+      .catch((error) => setError(error));
   };
 
   const handleUpdate = (item) => {
