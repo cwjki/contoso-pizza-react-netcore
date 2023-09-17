@@ -36,12 +36,20 @@ const Pizza = () => {
       .catch((error) => setError(error));
   };
 
-  const handleUpdate = (item) => {
-    // Simulate updating item on API
-    const updatedData = data.map((pizza) =>
-      pizza.id === item.id ? item : pizza
-    );
-    setData(updatedData);
+  const handleUpdate = (updatedItem) => {
+    console.log(`update item: ${JSON.stringify(updatedItem)}`);
+
+    fetch(`${API_URL}/${updatedItem.id}`, {
+      method: "PUT",
+      headers,
+      body: JSON.stringify(updatedItem),
+    })
+      .then(() =>
+        setData(
+          data.map((item) => (item.id === updatedItem ? updatedItem : item))
+        )
+      )
+      .catch((error) => setError(error));
   };
 
   const handleDelete = (id) => {
