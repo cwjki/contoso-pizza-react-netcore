@@ -3,33 +3,21 @@ import PizzaList from "./PizzaList";
 import { useState, useEffect } from "react";
 
 const term = "Pizza";
+const API_URL = "/pizzas";
+const headers = {
+  "Content-Type": "application/json",
+};
 
 const Pizza = () => {
   const [data, setData] = useState([]);
-  const [maxId, setMaxId] = useState(0);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchPizzaData = () => {
-      // Simulate fetching data from API
-      const pizzaData = [
-        {
-          id: 1,
-          name: "Margherita",
-          description: "Tomato sauce, mozzarella, and basil",
-        },
-        {
-          id: 2,
-          name: "Pepperoni",
-          description: "Tomato sauce, mozzarella, and pepperoni",
-        },
-        {
-          id: 3,
-          name: "Hawaiian",
-          description: "Tomato sauce, mozzarella, ham, and pinapple",
-        },
-      ];
-      setData(pizzaData);
-      setMaxId(Math.max(...pizzaData.map((pizza) => pizza.id)));
+      fetch(API_URL)
+        .then((response) => response.json())
+        .then((data) => setData(data))
+        .catch((error) => setError(error));
     };
 
     fetchPizzaData();
