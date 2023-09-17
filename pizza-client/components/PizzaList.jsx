@@ -9,8 +9,18 @@ const PizzaList = ({ name, data, onCreate, onUpdate, onDelete, error }) => {
     description: "",
   });
 
-  const handleFormChange = () => {};
-  const handleSubmit = () => {};
+  const handleFormChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = () => {
+    event.preventDefault();
+  };
+
   const handleEdit = () => {};
   const handleCancelEdit = () => {};
 
@@ -41,7 +51,7 @@ const PizzaList = ({ name, data, onCreate, onUpdate, onDelete, error }) => {
       </form>
       {error && <div>{error.message}</div>}
       <h2>{name}s</h2>
-      {/* <ul>
+      <ul>
         {data.map((item) => (
           <li key={item.id}>
             <div>
@@ -53,7 +63,7 @@ const PizzaList = ({ name, data, onCreate, onUpdate, onDelete, error }) => {
             </div>
           </li>
         ))}
-      </ul> */}
+      </ul>
     </div>
   );
 };

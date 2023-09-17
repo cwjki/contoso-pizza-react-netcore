@@ -23,7 +23,7 @@ const Pizza = () => {
           description: "Tomato sauce, mozzarella, and pepperoni",
         },
         {
-          id: 1,
+          id: 3,
           name: "Hawaiian",
           description: "Tomato sauce, mozzarella, ham, and pinapple",
         },
