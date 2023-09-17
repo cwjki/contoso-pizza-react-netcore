@@ -17,12 +17,37 @@ const PizzaList = ({ name, data, onCreate, onUpdate, onDelete, error }) => {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
     event.preventDefault();
+    if (editingId) {
+      onUpdate(formData);
+    } else {
+      onCreate(formData);
+    }
+    setFormData({
+      id: "",
+      name: "",
+      description: "",
+    });
   };
 
-  const handleEdit = () => {};
-  const handleCancelEdit = () => {};
+  const handleEdit = (item) => {
+    setEditingId(item.id);
+    setFormData({
+      id: item.id,
+      name: item.name,
+      description: item.description,
+    });
+  };
+
+  const handleCancelEdit = () => {
+    setEditingId(null);
+    setFormData({
+      id: "",
+      name: "",
+      description: "",
+    });
+  };
 
   return (
     <div>
