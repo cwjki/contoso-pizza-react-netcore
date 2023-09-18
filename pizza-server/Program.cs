@@ -1,15 +1,16 @@
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using PizzaStore.Models;
-using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// DB Connection
 var connectionString = builder.Configuration.GetConnectionString("Pizzas") ?? "Data Source=Pizzas.db";
 builder.Services.AddSqlite<PizzaDb>(connectionString);
 
 builder.Services.AddEndpointsApiExplorer();
 
+// Swagger
 builder.Services.AddSwaggerGen(c =>
 {
   c.SwaggerDoc("v1", new OpenApiInfo
@@ -20,6 +21,18 @@ builder.Services.AddSwaggerGen(c =>
   });
 });
 
+// CORS
+string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(option =>
+{
+  option.AddPolicy(name: MyAllowSpecificOrigins,
+    builder =>
+    {
+      builder.WithOrigins("http:example.com", "*");
+    });
+});
+
+
 var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
@@ -27,7 +40,9 @@ app.UseSwaggerUI(c =>
   c.SwaggerEndpoint("/swagger/v1/swagger.json", "PizzaStore API V1");
 });
 
-app.MapGet("/", async (PizzaDb db) => await db.Pizzas.ToListAsync());
+app.UseCors(MyAllowSpecificOrigins);
+
+app.MapGet("/pizza", async (PizzaDb db) => await db.Pizzas.ToListAsync());
 
 app.MapPost("/pizza", async (PizzaDb db, Pizza pizza) =>
 {
