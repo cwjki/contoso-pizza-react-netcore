@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "JT9UeQw5HOVrNCqgSmCWtfw99S9p9/VZ2JgAarnQgNB0y9rvwSqMOqquIGi3m3+/mGYfggoCjRN1wCJHYRbRBw==",
+  "dgSpecHash": "KdN1Rni1SR0FanLFJEN7FS3HwENBq5htvmAZbjyWMATiSNsLDI/fBgE6tdUImr8zB0Yxv6/2bcLdcF1TCGmkww==",
   "success": true,
   "projectFilePath": "/Users/cwjki/Desktop/CsharpProjects/ContosoPizza-React-NetCore/pizza-server/pizza-server.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/cwjki/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/Users/cwjki/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/Users/cwjki/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "/Users/cwjki/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "/Users/cwjki/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "/Users/cwjki/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
   "logs": []
 }
