@@ -3,7 +3,7 @@ import PizzaList from "./PizzaList";
 import { useState, useEffect } from "react";
 
 const term = "Pizza";
-const API_URL = "/pizzas";
+const API_URL = "http://localhost:5075/pizza";
 const headers = {
   "Content-Type": "application/json",
 };
