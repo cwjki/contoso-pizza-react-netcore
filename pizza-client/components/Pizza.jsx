@@ -25,7 +25,6 @@ const Pizza = () => {
 
   const handleCreate = (item) => {
     console.log(`add item: ${JSON.stringify(item)}`);
-
     fetch(API_URL, {
       method: "POST",
       headers,
@@ -38,7 +37,6 @@ const Pizza = () => {
 
   const handleUpdate = (updatedItem) => {
     console.log(`update item: ${JSON.stringify(updatedItem)}`);
-
     fetch(`${API_URL}/${updatedItem.id}`, {
       method: "PUT",
       headers,
@@ -53,9 +51,12 @@ const Pizza = () => {
   };
 
   const handleDelete = (id) => {
-    // Simulate deleting item on API
-    const updatedData = data.filter((pizza) => pizza.id !== id);
-    setData(updatedData);
+    fetch(`${API_URL}/${id}`, {
+      method: "DELETE",
+      headers,
+    })
+      .then(() => setData(data.filter((item) => item.id !== id)))
+      .catch((error) => console.log("Error deleting item:", error));
   };
 
   return (
@@ -63,6 +64,7 @@ const Pizza = () => {
       <PizzaList
         name={term}
         data={data}
+        error={error}
         onCreate={handleCreate}
         onUpdate={handleUpdate}
         onDelete={handleDelete}
