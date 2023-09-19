@@ -1,3 +1,8 @@
+import { CssBaseline } from "@mui/material";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+
+const theme = createTheme();
+
 export const metadata = {
   title: "Contoso Pizza Store",
   description: "Your favorite place for pizza",
@@ -6,7 +11,9 @@ export const metadata = {
 const RootLayout = ({ children }) => {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <ThemeProvider theme={theme}>
+        <body>{children}</body>
+      </ThemeProvider>
     </html>
   );
 };
