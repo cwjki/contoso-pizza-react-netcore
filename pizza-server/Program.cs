@@ -28,7 +28,7 @@ builder.Services.AddCors(option =>
   option.AddPolicy(name: MyAllowSpecificOrigins,
     policy =>
     {
-      policy.WithOrigins("*");
+      policy.WithOrigins("http://localhost:3000");
     });
 });
 
@@ -46,6 +46,7 @@ app.MapGet("/pizza", async (PizzaDb db) => await db.Pizzas.ToListAsync());
 
 app.MapPost("/pizza", async (PizzaDb db, Pizza pizza) =>
 {
+  Console.WriteLine(pizza.Id);
   await db.Pizzas.AddAsync(pizza);
   await db.SaveChangesAsync();
   return Results.Created($"/pizza/{pizza.Id}", pizza);

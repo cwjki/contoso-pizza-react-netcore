@@ -27,8 +27,11 @@ const Pizza = () => {
     console.log(`add item: ${JSON.stringify(item)}`);
     fetch(API_URL, {
       method: "POST",
-      headers,
-      body: JSON.stringify({ name: item.name, description: item.description }),
+      headers: headers,
+      body: JSON.stringify({
+        name: item.name,
+        description: item.description,
+      }),
     })
       .then((response) => response.json())
       .then((returnedItem) => setData(...data, returnedItem))
