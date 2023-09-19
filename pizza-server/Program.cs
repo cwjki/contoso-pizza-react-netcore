@@ -22,13 +22,13 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // CORS
-string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 builder.Services.AddCors(option =>
 {
   option.AddPolicy(name: MyAllowSpecificOrigins,
-    builder =>
+    policy =>
     {
-      builder.WithOrigins("http:example.com", "*");
+      policy.WithOrigins("*");
     });
 });
 
